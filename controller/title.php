@@ -21,8 +21,8 @@ $req = $shopManager->getTitles();
     </thead>
     <tbody>
         <?php
-				while ($data = $req->fetch()) {
-					echo "<tr>
+		while ($data = $req->fetch()) {
+			echo "<tr>
 	<td>{$data["id"]}</td>
 
 	<td id=\"title{$data["id"]}\">{$data["title"]}</td>
@@ -51,8 +51,8 @@ $req = $shopManager->getTitles();
 	</td>
 
 	</tr>";
-				}
-				?>
+		}
+		?>
     </tbody>
 </table>
 <?php

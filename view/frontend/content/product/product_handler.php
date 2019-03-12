@@ -51,9 +51,9 @@ ob_clean();
 ob_start();
 $req = $shopManager->getReview($id);
 if ($req->rowCount() > 0) {
-	while ($data = $req->fetch()) {
-		$star = $shopManager->generateStar($data['Star']);
-		?>
+    while ($data = $req->fetch()) {
+        $star = $shopManager->generateStar($data['Star']);
+        ?>
 <div class="media border p-3">
     <img src=<?= "/public/img/users/{$data['Username']}{$data['UserID']}/profile_picture.jpeg" ?> alt="Profile Pic" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 
@@ -62,6 +62,17 @@ if ($req->rowCount() > 0) {
         <p> <?= $data['Text'] ?> </p>
         <p class="text-right">
             <small> <i> <?= $data['Date'] ?> </i></small>
+            <div class="text-right">
+                <button id="btnEdit<?= $data['ReviewID'] ?>" value="<?= $data['ReviewID'] ?>" type="button" class="btn btn-link btn-sm editReview">
+                    Edit
+                </button>
+
+                <div id="btn2<?= $data['ReviewID'] ?>" class="btn-group btn-group-sm" style="display: none;">
+                    <button id="btnConfirm<?= $data['ReviewID'] ?>" value="<?= $data['ReviewID'] ?>" type="button" class="btn btn-link btn-sm confirmTitle\">Confirm</button>
+
+                    <button id="btnCancel<?= $data['ReviewID'] ?>" value="<?= $data['ReviewID'] ?>" type="button" class="btn btn-link btn-sm cancelTitle\">Cancel</button>
+                </div>
+            </div>
         </p>
     </div>
 </div>
@@ -69,7 +80,7 @@ if ($req->rowCount() > 0) {
 
 }
 } else {
-	echo "Be the first to review this product !";
+    echo "Be the first to review this product !";
 }
 $product_review  = ob_get_contents();
 ob_clean();
