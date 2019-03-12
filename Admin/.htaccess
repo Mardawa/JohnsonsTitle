@@ -2,3 +2,4 @@ AuthName "Page d'administration protégée"
 AuthType Basic
 AuthUserFile "C:\MAMP\htdocs\Admin\.htpasswd"
 Require valid-user
+Need to update the ref to htpasswd
