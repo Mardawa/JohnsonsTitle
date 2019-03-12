@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
 
-	var ogText ="";
-	var ogTitle ="";
-	var ogStar ="";
+	var ogText = "";
+	var ogTitle = "";
+	var ogStar = "";
 
 	$("button.editReview").click(function () {
 		var toEditText = "#rText" + $(this).val(); // Review Text
@@ -41,6 +41,12 @@ $(document).ready(function () {
 		$(toEditText).text(ogText);
 		$(toEditTitle).text(ogTitle);
 	});
+	
+	/* To do : 
+	button confirm with ajax post to update the database
+	find a way the update the star rating
+	To test : star rating with id for each star -> on click fill the star ?
+	 */
 
 
 });

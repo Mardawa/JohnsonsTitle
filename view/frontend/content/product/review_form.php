@@ -4,7 +4,8 @@
     <div class="form-group">
 
         <label for="reviewTitle"> Title :</label>
-        <input type="text" class="form-control" id="reviewTitle" name="reviewTitle" placeholder="Enter the title of your review" required>
+        <input type="text" class="form-control" id="reviewTitle" name="reviewTitle"
+            placeholder="Enter the title of your review" required>
 
         <label for="userID"> userID : à masquer </label>
         <input type="text" class="form-control" name="userID" id="userID" value="<?= $_SESSION['id'] ?>">
@@ -16,7 +17,8 @@
         <div class="rating"></div>
 
         <label for="reviewText">Review :</label>
-        <textarea class="form-control" rows="5" id="reviewText" name="reviewText" placeholder="Write your review here !"></textarea>
+        <textarea class="form-control" rows="5" id="reviewText" name="reviewText"
+            placeholder="Write your review here !"></textarea>
 
     </div>
 
@@ -27,12 +29,12 @@
 
 <script src="/public/js/jquery.star.rating.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.rating').addRating({
-            max: 5,
-            fieldName: 'rating',
-						fieldId: 'rating',
-						value: '5'
-        });
+$(document).ready(function() {
+    $('.rating').addRating({
+        max: 5,
+        fieldName: 'rating',
+        fieldId: 'rating',
+        value: '5'
     });
-</script> 
+});
+</script>
