@@ -39,15 +39,15 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['pswd']))
 	  		session_start();
 			$_SESSION['id'] = $resultat['id'];
 	 		$_SESSION['pseudo'] = $pseudo;
-	 		echo $_SESSION['id'];
-	 		echo "<br>";
-	 		echo $_SESSION['pseudo'];
-	 		echo "<br>";
+	 		// echo $_SESSION['id'];
+	 		// echo "<br>";
+	 		// echo $_SESSION['pseudo'];
+	 		// echo "<br>";
 	 		if (isset($_POST["autoconnect"]) && $_POST["autoconnect"] =="on")
 			{
-				setcookie('username', $pseudo, time() + 365*24*3600, null, null, false, true);
+				setcookie('username', $pseudo, time() + 7*24*3600, null, null, false, true);
 				setcookie('pswd', $resultat['pswd'], time() + 365*24*3600, null, null, false, true);
-				echo "Cookie set";
+				// echo "Cookie set";
 			}
 	 		header('Location: index.php?action=main');
 	 	}

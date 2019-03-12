@@ -14,31 +14,31 @@ $avgStar = number_format($data['AVG_star'], 2, '.', '');
 ?>
 
 <div>
-	<h1> <?= $data["name"] ?> </h1> 
-	<?= $shopManager->generateStar($avgStar); ?>
-	<br>
+    <h1> <?= $data["name"] ?> </h1>
+    <?= $shopManager->generateStar($avgStar); ?>
+    <br>
 </div>
 
 <div class="row">
 
-	 <div class="col-md-3"> 
-	 	<img class="mx-auto d-block img-fluid" src="http://placehold.it/250x300">
-	 </div>
+    <div class="col-md-3">
+        <img class="mx-auto d-block img-fluid" src="http://placehold.it/250x300">
+    </div>
 
-	  <div class="col-md-9"> 
-	  	Product id : <?= $data["id"] ?>	
-	  	<br>
-	 	Description :
-	 	<p>
-	 		<?= $data["description"] ?>	
-	 	</p>
-	 	<br>
-	 	Stock : <?= $data["stock"] ?>
-	 	<br>
-	 	Price : <?= $data["price"]; ?>$
-	 	<br>
-	 	
-	 </div>
+    <div class="col-md-9">
+        Product id : <?= $data["id"] ?>
+        <br>
+        Description :
+        <p>
+            <?= $data["description"] ?>
+        </p>
+        <br>
+        Stock : <?= $data["stock"] ?>
+        <br>
+        Price : <?= $data["price"]; ?>$
+        <br>
+
+    </div>
 
 </div>
 
@@ -52,25 +52,24 @@ ob_start();
 $req = $shopManager->getReview($id);
 if ($req->rowCount() > 0) {
 	while ($data = $req->fetch()) {
-	$star = $shopManager->generateStar($data['Star']);
-?>
-	<div class="media border p-3">
-		<img src=<?= "/public/img/users/{$data['Username']}{$data['UserID']}/profile_picture.jpeg" ?> alt="Profile Pic" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+		$star = $shopManager->generateStar($data['Star']);
+		?>
+<div class="media border p-3">
+    <img src=<?= "/public/img/users/{$data['Username']}{$data['UserID']}/profile_picture.jpeg" ?> alt="Profile Pic" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 
-		<div class="media-body">
-			<h3> <?= $data['Username'] ?> : <small> <?= $data['Title'] ?> </small> <?= $star ?></h3>
-      		<p> <?= $data['Text'] ?> </p> 
-      		<p class="text-right"> 
-      			<small> <i> <?= $data['Date'] ?> </i></small>
-      		</p>
-    	</div>
-	</div>
+    <div class="media-body">
+        <h3> <?= $data['Username'] ?> : <small> <?= $data['Title'] ?> </small> <?= $star ?></h3>
+        <p> <?= $data['Text'] ?> </p>
+        <p class="text-right">
+            <small> <i> <?= $data['Date'] ?> </i></small>
+        </p>
+    </div>
+</div>
 <?php
-	}
+
+}
 } else {
 	echo "Be the first to review this product !";
 }
 $product_review  = ob_get_contents();
 ob_clean();
-// End of Product review
-

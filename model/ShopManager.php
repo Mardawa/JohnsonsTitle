@@ -43,12 +43,19 @@ class ShopManager
 	  		'star' => $star));
 	}
 
-	// get all the review of q product
+	// get all the review of a product
 	public function getReview($id)
 	{
 		$db = $this->dbConnect();
 		$req = $db-> prepare('
-			SELECT product_review.id as `ReviewID`, users.pseudo as `Username`,users.id as `UserID`, products.name as `ProductName`, product_review.review as `Text`, product_review.star as `Star`, product_review.date as `Date`, product_review.title as `Title`
+			SELECT product_review.id as `ReviewID`, 
+			users.pseudo as `Username`,
+			users.id as `UserID`, 
+			products.name as `ProductName`, 
+			product_review.review as `Text`, 
+			product_review.star as `Star`, 
+			product_review.date as `Date`, 
+			product_review.title as `Title`
 			FROM `product_review`, users, products 
 			WHERE fkUsersId = users.id 
 			AND fkProductsId = products.id 
