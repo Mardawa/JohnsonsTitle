@@ -1,0 +1,2 @@
+Bonjour je suis une ligne de test
+Bonjour je suis la ligne 2Texte a ajouter dans le fichier

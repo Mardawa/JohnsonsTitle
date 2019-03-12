@@ -1,0 +1,13 @@
+/* Centered text */
+.centered-text-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg-jt-image{
+    background-image: url("/img/bg-jt.png");
+    background-size: cover;
+    background-repeat: repeat-x;
+}
