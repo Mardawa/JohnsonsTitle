@@ -14,6 +14,7 @@
             <br>
 
         </div>
+
         <div class="col-md-9">
 
             <div class="container">
@@ -30,7 +31,7 @@
                 <button class="btn btn-link" data-toggle="collapse" data-target="#newReview"> Write a review </button>
                 </small>
 
-                <div id="newReview" class="collapse">
+        <div id="newReview" class="collapse">
                     <?php require("./view/frontend/content/product/review_form.php") ?>
                 </div>
                 <br>

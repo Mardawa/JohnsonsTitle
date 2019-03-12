@@ -1,59 +1,59 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-	$("button.deleteTitle").click(function(){
+  $("button.deleteTitle").click(function () {
     $.post("/view/frontend/content/title/delete_title_ajax.php",
-  	{
-  		id: $(this).val()
-  	},
-  	function(data, status){
-      location.reload();
-  	})
+      {
+        id: $(this).val()
+      },
+      function (data, status) {
+        location.reload();
+      })
   });
 
-  var ogText ="";
+  var ogText = "";
 
-  $("button.editTitle").click(function(){
-    var toEdit = "#title"+$(this).val();
+  $("button.editTitle").click(function () {
+    var toEdit = "#title" + $(this).val();
     ogText = $(toEdit).text();
-    $(toEdit).attr("contenteditable","true");
+    $(toEdit).attr("contenteditable", "true");
     $(toEdit).toggleClass("table-active");
-    var buttonToChange ="#td"+$(this).val();
-    var toToggle = "#btn2"+$(this).val();
+    var buttonToChange = "#td" + $(this).val();
+    var toToggle = "#btn2" + $(this).val();
     $(toToggle).toggle();
     $(this).toggle();
   });
 
-  $("button.cancelTitle").click(function(){
-    var toToggle = "#btnEdit"+$(this).val();
+  $("button.cancelTitle").click(function () {
+    var toToggle = "#btnEdit" + $(this).val();
     $(toToggle).toggle();
-    var toToggle2 = "#btn2"+$(this).val();
+    var toToggle2 = "#btn2" + $(this).val();
     $(toToggle2).toggle();
-    var toEdit = "#title"+$(this).val();
-    $(toEdit).attr("contenteditable","false");
+    var toEdit = "#title" + $(this).val();
+    $(toEdit).attr("contenteditable", "false");
     $(toEdit).toggleClass("table-active");
     $(toEdit).text(ogText);
   });
 
-  $("button.confirmTitle").click(function(){
-    var toToggle = "#btnEdit"+$(this).val();
+  $("button.confirmTitle").click(function () {
+    var toToggle = "#btnEdit" + $(this).val();
     $(toToggle).toggle();
-    var toToggle2 = "#btn2"+$(this).val();
+    var toToggle2 = "#btn2" + $(this).val();
     $(toToggle2).toggle();
-    var toEdit = "#title"+$(this).val();
-    $(toEdit).attr("contenteditable","false");
+    var toEdit = "#title" + $(this).val();
+    $(toEdit).attr("contenteditable", "false");
     $(toEdit).toggleClass("table-active");
   });
 
-  $("button.confirmTitle").click(function(){
-    var toEdit = "#title"+$(this).val();
+  $("button.confirmTitle").click(function () {
+    var toEdit = "#title" + $(this).val();
     $.post("/view/frontend/content/title/edit_title_ajax.php",
-    {
-      id: $(this).val(),
-      newTitle: $(toEdit).text(),
-    },
-    function(data,status){
-      alert(data+"  "+status);
-    })
+      {
+        id: $(this).val(),
+        newTitle: $(toEdit).text(),
+      },
+      function (data, status) {
+        alert(data + "  " + status);
+      })
   });
 
 });

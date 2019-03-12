@@ -2,52 +2,53 @@
 class ShopManager
 {
 
-// Clothing Section
+	// Clothing Section
 
 	// generate star 
-	public function generateStar($star){
-		$star1 ="";
-		if ($star*2 % 2 == 0) {
-			for ($i=1; $i <= $star; $i++) { 
-			$star1 .= "<i class=\"material-icons\">star</i>";
+	public function generateStar($star)
+	{
+		$star1 = "";
+		if ($star * 2 % 2 == 0) {
+			for ($i = 1; $i <= $star; $i++) {
+				$star1 .= "<i class=\"material-icons star{$i}\">star</i>";
 			}
-			for ($i=0; $i < 5-$star ; $i++) { 
-			$star1 .= "<i class=\"material-icons\">star_border</i>";
+			for ($i = $star + 1; $i <= 5; $i++) {
+				$star1 .= "<i class=\"material-icons star{$i}\">star_border</i>";
 			}
-		return $star1;
+			return $star1;
 		} else {
-			for ($i=1; $i <= $star; $i++) { 
-			$star1 .= "<i class=\"material-icons\">star</i>";
+			for ($i = 1; $i <= $star; $i++) {
+				$star1 .= "<i class=\"material-icons\">star</i>";
 			}
 			$star1 .= "<i class=\"material-icons\">star_half</i>";
-			for ($i=1; $i < 5-$star ; $i++) { 
-			$star1 .= "<i class=\"material-icons\">star_border</i>";
+			for ($i = 1; $i < 5 - $star; $i++) {
+				$star1 .= "<i class=\"material-icons\">star_border</i>";
 			}
 			return $star1;
 		}
-		
 	}
 
 	// Add a product to the data base
-	public function addNewProduct($userID,$productID,$title,$review,$star)
+	public function addNewProduct($userID, $productID, $title, $review, $star)
 	{
 		$db = $this->dbConnect();
 		$sql = "INSERT INTO product_review(fkUsersId, fkProductsId, title, review, star)
 			VALUES(:userID,:productID,:title,:review,:star)";
 		$req = $db->prepare($sql);
 		$req->execute(array(
-	  		'userID'=> $userID,
-	  		'productID' => $productID,
-	  		'title' => $title,
-	  		'review' => $review,
-	  		'star' => $star));
+			'userID' => $userID,
+			'productID' => $productID,
+			'title' => $title,
+			'review' => $review,
+			'star' => $star
+		));
 	}
 
 	// get all the review of a product
 	public function getReview($id)
 	{
 		$db = $this->dbConnect();
-		$req = $db-> prepare('
+		$req = $db->prepare('
 			SELECT product_review.id as `ReviewID`, 
 			users.pseudo as `Username`,
 			users.id as `UserID`, 
@@ -112,7 +113,7 @@ class ShopManager
 		return $req;
 	}
 
-// Title Section
+	// Title Section
 
 	// Add a new title in the db
 	public function addTitle($title)
@@ -121,19 +122,22 @@ class ShopManager
 		$req = $db->prepare("INSERT INTO titles (title)
 			VALUES(:title)");
 		$req->execute(array(
-	  		'title'=> $title));
+			'title' => $title
+		));
 	}
 
 
 	// Update the $id title
-	public function editTitle($id,$newTitle){
+	public function editTitle($id, $newTitle)
+	{
 		$db = $this->dbConnect();
 		$req = $db->prepare("UPDATE `titles`
 			SET `title`= :newTitle
 			WHERE `id`= :id");
 		$req->execute(array(
-	  		'id'=> $id,
-	  		'newTitle' => $newTitle));
+			'id' => $id,
+			'newTitle' => $newTitle
+		));
 	}
 
 	// Delete a title with id $id
@@ -144,7 +148,8 @@ class ShopManager
 			FROM `titles`
 			WHERE id=:id");
 		$req->execute(array(
-	  		'id'=> $id));
+			'id' => $id
+		));
 	}
 
 	// Check if title already in database 
@@ -153,7 +158,7 @@ class ShopManager
 		$db = $this->dbConnect();
 		$req = $db->prepare("SELECT id FROM titles WHERE title =:title");
 		$req->execute(array('title' => $title));
-		$bool = (bool) $req -> fetchColumn();
+		$bool = (bool)$req->fetchColumn();
 		if ($bool) {
 			throw new Exception(" Title already in the database");
 		}
@@ -167,20 +172,15 @@ class ShopManager
 		return $req;
 	}
 
-// General Section 
+	// General Section 
 	// Connect to the db : jt_title
 	private function dbConnect()
 	{
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=jt_title;charset=utf8', 'root', 'root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		try {
+			$db = new PDO('mysql:host=localhost;dbname=jt_title;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 			return $db;
-		}
-		catch(Exception $e)
-		{
-			die('Erreur : '.$e->getMessage());
+		} catch (Exception $e) {
+			die('Erreur : ' . $e->getMessage());
 		}
 	}
-
-
 }
