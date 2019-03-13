@@ -41,12 +41,42 @@ $(document).ready(function () {
 		$(toEditText).text(ogText);
 		$(toEditTitle).text(ogTitle);
 	});
-	
+
 	/* To do : 
 	button confirm with ajax post to update the database
 	find a way the update the star rating
 	To test : star rating with id for each star -> on click fill the star ?
 	 */
 
+	$("button.confirmReview").click(function () {
+		var toToggle = "#btnEdit" + $(this).val();
+		$(toToggle).toggle();
+
+		var toToggle2 = "#btn2" + $(this).val();
+		$(toToggle2).toggle();
+
+		var toEditText = "#rText" + $(this).val();
+		var toEditTitle = "#rTitle" + $(this).val();
+		var r = "#r" + $(this).val();
+
+		$(toEditText).attr("contenteditable", "false");
+		$(toEditTitle).attr("contenteditable", "false");
+		$(r).toggleClass("bg-light");
+	});
+
+	$("button.confirmReview").click(function () {
+		var toEditText = "#rText" + $(this).val();
+		var toEditTitle = "#rTitle" + $(this).val();
+
+		$.post("/view/frontend/content/product/edit_review_ajax.php", {
+			id: $(this).val(),
+			newText: $(toEditText).text(),
+			newTitle: $(toEditTitle).text()
+		}
+		//,function (data, status) {
+				//alert(data + "status : " + status);
+			//}
+			)
+	});
 
 });

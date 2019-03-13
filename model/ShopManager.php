@@ -65,6 +65,18 @@ class ShopManager
 		return $req;
 	}
 
+	// Edit a review 
+	public function editReview($id,$newTitle,$newText)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('UPDATE `product_review` 
+		SET `title`= :newTitle,`review`= :newText
+		WHERE `id`=  :id');
+		$req->execute(array('id'=> $id,
+		'newTitle' => $newTitle,
+		'newText' => $newText));
+	}
+
 	// get 1 product with its id 
 	public function getProductById($id)
 	{
