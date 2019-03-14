@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le :  lun. 11 mars 2019 à 17:08
--- Version du serveur :  5.7.24-log
--- Version de PHP :  7.2.10
+-- Host: localhost:3306
+-- Generation Time: Mar 14, 2019 at 12:07 AM
+-- Server version: 5.7.24-log
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `jt_title`
+-- Database: `jt_title`
 --
 CREATE DATABASE IF NOT EXISTS `jt_title` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `jt_title`;
@@ -27,7 +27,7 @@ USE `jt_title`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `products`
+-- Table structure for table `products`
 --
 
 DROP TABLE IF EXISTS `products`;
@@ -41,7 +41,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `type`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `stock`, `type`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `product_review`
+-- Table structure for table `product_review`
 --
 
 DROP TABLE IF EXISTS `product_review`;
@@ -71,18 +71,20 @@ CREATE TABLE `product_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `product_review`
+-- Dumping data for table `product_review`
 --
 
 INSERT INTO `product_review` (`id`, `fkUsersId`, `fkProductsId`, `title`, `review`, `star`, `date`) VALUES
-(1, 1, 1, 'THE BEST PRODUCT EVER ', 'Great product. The best T-Shirt monney can buy. Highly recommed it even at twice the price.', 5, '2019-03-08 00:00:00'),
-(2, 2, 1, 'OVERPRICE', 'Don\'t Buy !', 1, '2019-03-09 14:44:46'),
-(9, 1, 1, 'Good Quality Shirt', '', 0, '2019-03-11 14:24:43');
+(1, 1, 1, 'BEST SHIRT EVER ! ', 'Yes it\'s really the best shirt I\'ve ever touch ! Indeed.', 5, '2019-03-08 00:00:00'),
+(2, 2, 1, 'newTitle', 'newText', 5, '2019-03-09 14:44:46'),
+(9, 1, 1, 'Good Quality Shirt', 'some text to fill the space', 0, '2019-03-11 14:24:43'),
+(10, 1, 1, 'Testing', 'Some text ! safas', 4, '2019-03-12 17:41:02'),
+(11, 1, 1, 'Title 2 ', 'Get some sleep !', 5, '2019-03-13 23:38:21');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `product_type`
+-- Table structure for table `product_type`
 --
 
 DROP TABLE IF EXISTS `product_type`;
@@ -92,7 +94,7 @@ CREATE TABLE `product_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `product_type`
+-- Dumping data for table `product_type`
 --
 
 INSERT INTO `product_type` (`id`, `type`) VALUES
@@ -103,7 +105,7 @@ INSERT INTO `product_type` (`id`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `titles`
+-- Table structure for table `titles`
 --
 
 DROP TABLE IF EXISTS `titles`;
@@ -113,7 +115,7 @@ CREATE TABLE `titles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `titles`
+-- Dumping data for table `titles`
 --
 
 INSERT INTO `titles` (`id`, `title`) VALUES
@@ -122,13 +124,13 @@ INSERT INTO `titles` (`id`, `title`) VALUES
 (5, 'Le Planificateur (ft. Le Pire)'),
 (6, 'L\'estimateur'),
 (7, 'Sleepy Johnson'),
-(8, 'The Runner (Run Boy Run)'),
+(8, 'The Runner'),
 (9, 'Cable Box Manager');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -141,7 +143,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `pseudo`, `pswd`, `email`, `date_inscription`) VALUES
@@ -150,18 +152,18 @@ INSERT INTO `users` (`id`, `pseudo`, `pswd`, `email`, `date_inscription`) VALUES
 (3, 'Kes', '$2y$10$3f2sEPxp.86vesdGpgW8Z.CiLeoggYGG8KNpOyC6vmBqhb2OESWea', 'Kes@gitan.ch', '2019-03-07');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products-type` (`type`);
 
 --
--- Index pour la table `product_review`
+-- Indexes for table `product_review`
 --
 ALTER TABLE `product_review`
   ADD PRIMARY KEY (`id`),
@@ -169,69 +171,69 @@ ALTER TABLE `product_review`
   ADD KEY `review-products` (`fkProductsId`);
 
 --
--- Index pour la table `product_type`
+-- Indexes for table `product_type`
 --
 ALTER TABLE `product_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `titles`
+-- Indexes for table `titles`
 --
 ALTER TABLE `titles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `product_review`
+-- AUTO_INCREMENT for table `product_review`
 --
 ALTER TABLE `product_review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT pour la table `product_type`
+-- AUTO_INCREMENT for table `product_type`
 --
 ALTER TABLE `product_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `titles`
+-- AUTO_INCREMENT for table `titles`
 --
 ALTER TABLE `titles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products-type` FOREIGN KEY (`type`) REFERENCES `product_type` (`id`);
 
 --
--- Contraintes pour la table `product_review`
+-- Constraints for table `product_review`
 --
 ALTER TABLE `product_review`
   ADD CONSTRAINT `review-products` FOREIGN KEY (`fkProductsId`) REFERENCES `products` (`id`),
