@@ -75,16 +75,6 @@ if ($req->rowCount() > 0) {
                 </h3>
             </div>
 
-            <div id="starChange<?= $data['ReviewID'] ?>" class="col form-group" style="display: none;">
-                <label>New number of star:</label>
-                <select class="form-control-sm">
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                </select>
-            </div>
         </div>
 
         <div id="rText<?= $data['ReviewID'] ?>">

@@ -5,9 +5,12 @@ $(document).ready(function () {
 	var ogTitle = "";
 	var ogStar = "";
 	var status = true;
+	var reviewID = -1;
+	var nbStar = -1;
 
 	$("button.editReview").click(function () {
 		if (status) {
+			reviewID = $(this).val();
 			var toEditText = "#rText" + $(this).val(); // Review Text
 			var r = "#r" + $(this).val(); // Review Container 
 			var toEditTitle = "#rTitle" + $(this).val(); // Review Title
@@ -23,8 +26,6 @@ $(document).ready(function () {
 
 			var toToggle = "#btn2" + $(this).val();
 			$(toToggle).toggle();
-			var starChange = "#starChange" + $(this).val();
-			$(starChange).toggle();
 			$(this).toggle();
 		} else {
 			alert("You can only edit 1 review at a time (suggestion gray out the other edit button ?)");
@@ -37,12 +38,14 @@ $(document).ready(function () {
 			var numberStar = 0;
 			$.post("/view/frontend/content/product/getReviewById.php", {
 				id: $(this).val()
-			}, function (data, status) {
+			}, function (data) {
 				numberStar = data;
 				numberStar = 1 * numberStar;
+				nbStar = numberStar;
 				//alert(numberStar);
-				$(toEditStar).html(generateStar(numberStar));
+				$(toEditStar).html(generateStarButton(numberStar));
 			})
+
 			status = false;
 		}
 	});
@@ -53,9 +56,6 @@ $(document).ready(function () {
 
 		var toToggle2 = "#btn2" + $(this).val();
 		$(toToggle2).toggle();
-
-		var starChange = "#starChange" + $(this).val();
-		$(starChange).toggle();
 
 		var toEditText = "#rText" + $(this).val();
 		var toEditTitle = "#rTitle" + $(this).val();
@@ -80,9 +80,6 @@ $(document).ready(function () {
 		var toToggle2 = "#btn2" + $(this).val();
 		$(toToggle2).toggle();
 
-		var starChange = "#starChange" + $(this).val();
-		$(starChange).toggle();
-
 		var toEditText = "#rText" + $(this).val();
 		var toEditTitle = "#rTitle" + $(this).val();
 		var r = "#r" + $(this).val();
@@ -90,44 +87,56 @@ $(document).ready(function () {
 		$(toEditText).attr("contenteditable", "false");
 		$(toEditTitle).attr("contenteditable", "false");
 		$(r).toggleClass("bg-light");
+		status = true;
 	});
 
-	var newStarRating = 5;
-
 	$("button.confirmReview").click(function () {
+		
 		var toEditText = "#rText" + $(this).val();
 		var toEditTitle = "#rTitle" + $(this).val();
-
-		var toEditStar = "#rStar" + $(this).val();
-		newStarRating = 1 * newStarRating;
-		//alert(newStarRating);
-		$(toEditStar).html(generateStar(newStarRating));
-
+		var toEditStar = "#rStar" + reviewID;
+		$(toEditStar).html(generateStar(nbStar));
 		$.post("/view/frontend/content/product/edit_review_ajax.php", {
 			id: $(this).val(),
 			newText: $(toEditText).text(),
 			newTitle: $(toEditTitle).text(),
-			star: newStarRating
+			star: nbStar
 		}
 			// ,function (data, status) {
 			// alert(data + "status : " + status);
 			// }
 		)
+
 		status = true;
 	});
 
-	$("select").change(function () {
-		newStarRating = $(this).val();
-		
+	$("span").on("click","button",function(){
+		//alert("span-button");
+		nbStar = $(this).val()*1;
+		var toEditStar = "#rStar" + reviewID;
+		$(toEditStar).html(generateStarButton(nbStar));
+
 	});
-
-
 
 });
 
-function generateStar(s) {
-	var star1 = "<div class=\"btn-group\">";
+function generateStarButton(s) {
+	var star1 = "<div id=\"starButton\" class=\"btn-group\">";
 
+	for (var i = 1; i <= s; i++) {
+		star1 += "<button value="+i+" class=\"btn\" style=\"background-color:transparent\" > <i class=\"material-icons\">star</i> </button>";
+	}
+
+	for (var i = s + 1; i <= 5; i++) {
+		star1 += "<button value="+i+" class=\"btn\" style=\"background-color:transparent\" > <i class=\"material-icons\">star_border</i> </button>";
+	}
+
+	star1 += "</div>";
+	return star1;
+}
+
+function generateStar(s){
+	var star1 = "<span>";
 	for (var i = 1; i <= s; i++) {
 		star1 += "<i class=\"material-icons\">star</i>";
 	}
@@ -135,7 +144,6 @@ function generateStar(s) {
 	for (var i = s + 1; i <= 5; i++) {
 		star1 += "<i class=\"material-icons\"> star_border</i>";
 	}
-
-	star1 += "</div>";
+	star1 += "</span>";
 	return star1;
 }
