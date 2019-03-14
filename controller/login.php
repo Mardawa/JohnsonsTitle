@@ -24,6 +24,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['pswd']))
 	{
 	$pseudo = $formCheckerManager->test_input($_POST["pseudo"]);
 	$password = $formCheckerManager->test_input($_POST["password"]);
+	$loginErr ="";
 
 	$resultat = $formCheckerManager->returnPswd($pseudo);
 	$isPasswordCorrect = password_verify($password,$resultat['pswd']);
@@ -57,6 +58,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['pswd']))
 			}
 		}
 	} else {
+		$loginErr ="";
 		require("./view/frontend/login_view.php");
 	}
 }
