@@ -4,7 +4,7 @@
             &times;
         </button>
 
-        <strong> Info : </strong> Display all the product info. Review system and shopping inc.
+        <strong> Info : </strong> Updating star review temp
     </div>
 
     <div class="row">
@@ -31,7 +31,7 @@
                 <button class="btn btn-link" data-toggle="collapse" data-target="#newReview"> Write a review </button>
                 </small>
 
-        <div id="newReview" class="collapse">
+                <div id="newReview" class="collapse">
                     <?php require("./view/frontend/content/product/review_form.php") ?>
                 </div>
                 <br>
@@ -57,4 +57,4 @@
 </div>
 
 
-<script src="/view/frontend/content/product/review_js.js"></script> 
+<script src="/view/frontend/content/product/review_js.js"></script>

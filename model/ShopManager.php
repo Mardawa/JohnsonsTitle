@@ -10,22 +10,35 @@ class ShopManager
 		$star1 = "";
 		if ($star * 2 % 2 == 0) {
 			for ($i = 1; $i <= $star; $i++) {
-				$star1 .= "<i class=\"material-icons star{$i}\">star</i>";
+				$star1 .= "<i value=\"{$i}\" class=\"material-icons\">star</i>";
 			}
 			for ($i = $star + 1; $i <= 5; $i++) {
-				$star1 .= "<i class=\"material-icons star{$i}\">star_border</i>";
+				$star1 .= "<i value=\"{$i}\" class=\"material-icons\"> star_border</i>";
 			}
 			return $star1;
 		} else {
 			for ($i = 1; $i <= $star; $i++) {
-				$star1 .= "<i class=\"material-icons\">star</i>";
+				$star1 .= "<i value=\"{$i}\" class=\"material-icons\">star</i>";
 			}
-			$star1 .= "<i class=\"material-icons\">star_half</i>";
-			for ($i = 1; $i < 5 - $star; $i++) {
-				$star1 .= "<i class=\"material-icons\">star_border</i>";
+			$star1 .= "<i value=\"{$i}\" class=\"material-icons\">star_half</i>";
+			for ($i = 1; $i <= 5 - $star; $i++) {
+				$star1 .= "<i value=\"{$i}\" class=\"material-icons\">star_border</i>";
 			}
 			return $star1;
 		}
+	}
+	// generate star button group
+	public function generateStarButton($star)
+	{
+		$star1 = "<div class=\"btn-group\">";
+		for ($i = 1; $i <= $star; $i++) {
+			$star1 .= "<button value={$i} class=\"btn btn-sm star\" style=\"appearance: none\"><i value=\"{$i}\" class=\"material-icons\">star</i></button>";
+		}
+		for ($i = $star + 1; $i <= 5; $i++) {
+			$star1 .= "<button value={$i} class=\"btn btn-sm star\" style=\"appearance: none\"><i value=\"{$i}\" class=\"material-icons\"> star_border</i></button>";
+		}
+		$star1 .= "</div>";
+		return $star1;
 	}
 
 	// Add a product to the data base
@@ -65,16 +78,40 @@ class ShopManager
 		return $req;
 	}
 
+	// get Review by ID of the review
+	public function getReviewById($id)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('
+			SELECT product_review.id as `ReviewID`, 
+			users.pseudo as `Username`,
+			users.id as `UserID`, 
+			products.name as `ProductName`, 
+			product_review.review as `Text`, 
+			product_review.star as `Star`, 
+			product_review.date as `Date`, 
+			product_review.title as `Title`
+			FROM `product_review`, users, products 
+			WHERE fkUsersId = users.id 
+			AND fkProductsId = products.id
+			AND product_review.id = :id');
+		$req->execute(array('id' => $id));
+		return $req->fetch();
+	}
+
 	// Edit a review 
-	public function editReview($id,$newTitle,$newText)
+	public function editReview($id, $newTitle, $newText, $star)
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('UPDATE `product_review` 
-		SET `title`= :newTitle,`review`= :newText
-		WHERE `id`=  :id');
-		$req->execute(array('id'=> $id,
-		'newTitle' => $newTitle,
-		'newText' => $newText));
+		SET `title`= :newTitle,`review`= :newText, `star`= :star
+		WHERE id=:id');
+		$req->execute(array(
+			'id' => $id,
+			'newTitle' => $newTitle,
+			'newText' => $newText,
+			'star' => $star
+		));
 	}
 
 	// get 1 product with its id 

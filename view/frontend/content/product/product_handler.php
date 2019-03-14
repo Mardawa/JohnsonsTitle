@@ -10,12 +10,13 @@ $id = $_GET['productKey'];
 // Product general info
 ob_start();
 $data = $shopManager->getProductById($id);
-$avgStar = number_format($data['AVG_star'], 2, '.', '');
+$avgStar = $data['AVG_star']*1;
+$s1 = round($avgStar * 2) / 2;
 ?>
 
 <div>
     <h1> <?= $data["name"] ?> </h1>
-    <?= $shopManager->generateStar($avgStar); ?>
+    <?= $shopManager->generateStar($s1); ?>
     <br>
 </div>
 
@@ -52,20 +53,39 @@ ob_start();
 $req = $shopManager->getReview($id);
 if ($req->rowCount() > 0) {
     while ($data = $req->fetch()) {
-        $star = $shopManager->generateStar($data['Star']);
+        $nbStar = $data['Star'] * 1;
+        $star = $shopManager->generateStar($nbStar);
         ?>
 <div id="r<?= $data['ReviewID'] ?>" class="media border p-3">
     <img src=<?= "/public/img/users/{$data['Username']}{$data['UserID']}/profile_picture.jpeg" ?> alt="Profile Pic" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 
     <div class="media-body">
-        <h3> <?= $data['Username'] ?> :
-            <small id="rTitle<?= $data['ReviewID'] ?>">
-                <?= $data['Title'] ?>
-            </small>
-            <span id="rStar<?= $data['ReviewID'] ?>">
-                <?= $star ?>
-            </span>
-        </h3>
+
+        <div class="row">
+            <div class="col">
+                <h3> <?= $data['Username'] ?> :
+
+                    <small id="rTitle<?= $data['ReviewID'] ?>">
+                        <?= $data['Title'] ?>
+                    </small>
+
+                    <span id="rStar<?= $data['ReviewID'] ?>">
+                        <?= $star ?>
+                    </span>
+                </h3>
+            </div>
+
+            <div id="starChange<?= $data['ReviewID'] ?>" class="col form-group" style="display: none;">
+                <label>New number of star:</label>
+                <select class="form-control-sm">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+            </div>
+        </div>
 
         <div id="rText<?= $data['ReviewID'] ?>">
             <?= $data['Text'] ?>
@@ -74,11 +94,12 @@ if ($req->rowCount() > 0) {
         <p class="text-right">
             <small> <i> <?= $data['Date'] ?> </i></small>
 
-            <?php if ($data['UserID'] == $_SESSION['id']) {
-                ?>
+            <?php if (isset($_SESSION['id'])) {
+                if ($data['UserID'] == $_SESSION['id']) {
+                    ?>
 
             <div class="text-right">
-                <!-- div with button edit/confirm/cancal-->
+                <!-- div with button edit/confirm/cancel-->
 
                 <button id="btnEdit<?= $data['ReviewID'] ?>" value="<?= $data['ReviewID'] ?>" type="button" class="btn btn-link btn-sm editReview">
                     Edit
@@ -93,7 +114,8 @@ if ($req->rowCount() > 0) {
                 </div>
             </div> <!-- end of div button-->
             <?
-        } ?>
+        }
+    } ?>
 
         </p>
     </div>
