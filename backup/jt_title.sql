@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2019 at 10:50 AM
+-- Generation Time: Mar 15, 2019 at 08:34 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -79,7 +79,8 @@ INSERT INTO `product_review` (`id`, `fkUsersId`, `fkProductsId`, `title`, `revie
 (2, 2, 1, 'newTitle', 'newText', 5, '2019-03-09 14:44:46'),
 (9, 1, 1, 'Good Quality Shirt', 'some text to fill the space', 3, '2019-03-11 14:24:43'),
 (10, 1, 1, 'Testing Title ', 'Some text ! to fill all this lonely space and to say that this is the best product ever almost 4/5', 4, '2019-03-12 17:41:02'),
-(11, 1, 1, 'Bad Product ', 'Only deserve 1 lonely star :(', 1, '2019-03-13 23:38:21');
+(11, 1, 1, 'Bad Product ', 'Only deserve 1 lonely star :(', 1, '2019-03-13 23:38:21'),
+(12, 1, 1, 'Testing with hidden fields', 'Testing to make sure everything is working fine :D', 2, '2019-03-15 16:59:43');
 
 -- --------------------------------------------------------
 
@@ -105,6 +106,27 @@ INSERT INTO `product_type` (`id`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shopping_cart`
+--
+
+DROP TABLE IF EXISTS `shopping_cart`;
+CREATE TABLE `shopping_cart` (
+  `id` int(11) NOT NULL,
+  `fkUsersId` int(11) NOT NULL,
+  `fkProductsId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`id`, `fkUsersId`, `fkProductsId`, `quantity`) VALUES
+(14, 1, 7, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `titles`
 --
 
@@ -125,7 +147,8 @@ INSERT INTO `titles` (`id`, `title`) VALUES
 (6, 'L\'estimateur'),
 (7, 'Sleepy Johnson'),
 (8, 'The Runner'),
-(9, 'Cable Box Manager');
+(9, 'Cable Box Manager'),
+(10, 'The Job Hunter');
 
 -- --------------------------------------------------------
 
@@ -177,6 +200,14 @@ ALTER TABLE `product_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart-user` (`fkUsersId`),
+  ADD KEY `cart-products` (`fkProductsId`);
+
+--
 -- Indexes for table `titles`
 --
 ALTER TABLE `titles`
@@ -202,7 +233,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_review`
 --
 ALTER TABLE `product_review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -211,10 +242,16 @@ ALTER TABLE `product_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `titles`
 --
 ALTER TABLE `titles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -238,6 +275,13 @@ ALTER TABLE `products`
 ALTER TABLE `product_review`
   ADD CONSTRAINT `review-products` FOREIGN KEY (`fkProductsId`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `review-user` FOREIGN KEY (`fkUsersId`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  ADD CONSTRAINT `cart-products` FOREIGN KEY (`fkProductsId`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `cart-user` FOREIGN KEY (`fkUsersId`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
