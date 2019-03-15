@@ -1,4 +1,4 @@
 <?php ob_start(); 
-require(".view/frontend/content/myCart/myCart_display.php");
+require("./view/frontend/content/myCart/myCart_display.php");
 $content = ob_get_clean();
-require('./view/frontend/template.php');
+require('./view/frontend/template2.php');

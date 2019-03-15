@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
 	var ogText = "";
 	var ogTitle = "";
 	var ogStar = "";

@@ -4,6 +4,11 @@
             &times;
         </button>
 
-        <strong> Info : </strong> This page will display user shopping cart
+        <strong> Info : </strong> Adding click soon and product picture ? and possibility to adjust the quantity ?
     </div>
+
+    <?= $shopping_cart ?>
+
 </div>
+
+<script src="/view/frontend/content/product/cart_js.js"></script>

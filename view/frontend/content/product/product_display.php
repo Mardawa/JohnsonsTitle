@@ -58,3 +58,5 @@
 
 
 <script src="/view/frontend/content/product/review_js.js"></script>
+
+<script src="/view/frontend/content/product/cart_js.js"></script>

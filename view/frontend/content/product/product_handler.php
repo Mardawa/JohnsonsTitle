@@ -10,7 +10,7 @@ $id = $_GET['productKey'];
 // Product general info
 ob_start();
 $data = $shopManager->getProductById($id);
-$avgStar = $data['AVG_star']*1;
+$avgStar = $data['AVG_star'] * 1;
 $s1 = round($avgStar * 2) / 2;
 ?>
 
@@ -38,6 +38,10 @@ $s1 = round($avgStar * 2) / 2;
         <br>
         Price : <?= $data["price"]; ?>$
         <br>
+
+        <button value=<?= $data["id"] ?> class="btn addCart" and style="background-color:transparent">
+            <i class="material-icons">add_shopping_cart</i>
+        </button>
 
     </div>
 
