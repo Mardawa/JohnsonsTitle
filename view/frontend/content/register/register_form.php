@@ -47,4 +47,4 @@
 
 
 
-<script src="/view/frontend/register/register_js.js"></script>
+<script src='view\frontend\content\register\register_js.js'></script>
