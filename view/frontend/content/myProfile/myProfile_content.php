@@ -36,7 +36,7 @@
 			
 			
 
-			<?php require("./view/frontend/content/imagePP_form.php");?>
+			<?php require("./view/frontend/content/myProfile/imagePP_form.php");?>
 
 		</div>
 

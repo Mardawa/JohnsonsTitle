@@ -1,12 +1,14 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <html>
 
     <head>
 
-        <?php require("./view/frontend/content/head.php"); ?>
-
-        <script src="/public/js/jquery.js"></script>
+        <?php require('view\frontend\template\head.php'); ?>
 
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -15,16 +17,16 @@
     <body>
         <div>
 
-            <?php require("./view/frontend/content/header.php"); ?>
+            <?php require('./view\frontend\template\header.php'); ?>
 
             <br>
-
+            
             <?= $content ?>
 
             <br>
             
         </div>
-        
+    	
     </body>
 
     <footer class="jumbotron text-center" style="margin-bottom:0">

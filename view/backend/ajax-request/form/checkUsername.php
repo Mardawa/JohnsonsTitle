@@ -1,14 +1,15 @@
 <?php
-
-require_once("./model/FormCheckerManager.php");
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once($root . "./model/FormCheckerManager.php");
 $formCheckerManager = new FormCheckerManager();
 
-$pseudo = $formCheckerManager->test_input($_REQUEST["q"]);
+// $pseudo = $formCheckerManager->test_input($_REQUEST["q"]);
+$pseudo = $formCheckerManager->test_input($_POST['username']);
 
 $pseudoErr = "Valid username";
 
 try {
-    $formCheckerManager->checkUsername($pseudo);    
+    $formCheckerManager->checkUsername($pseudo);
 } catch (Exception $e) {
     $pseudoErr = $e->getMessage();
 }

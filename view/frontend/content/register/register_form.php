@@ -5,7 +5,7 @@
 
 				<div class="form-group">
 					<label for="pseudo"> Username* :</label>
-					<input class="form-control" type="text" onkeyup="checkUsername(this.value)" name="pseudo" id="pseudo" autocomplete="off" 
+					<input id="toCheck" class="form-control" type="text" name="pseudo" id="pseudo" autocomplete="off" 
 					<?php if (isset($pseudo)) {
 						echo "value=${pseudo}";
 					} ?> required />
@@ -47,26 +47,4 @@
 
 
 
-
-<script>
-
-function checkUsername(str) {
-    if (str.length == 0) { 
-    	// document.getElementById("usernameStatus").innerHTML ="";
-    	$("#usernameStatus").text("");
-        return;
-    } else {
-    	$.get("checkUsername.php?q="+str,function(data,status){
-    		$("#usernameStatus").text(data);
-    	});
-        // var xmlhttp = new XMLHttpRequest();
-        // xmlhttp.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         document.getElementById("usernameStatus").innerHTML = this.responseText;
-        //     }
-        // };
-        // xmlhttp.open("GET", "checkUsername.php?q=" + str, true);
-        // xmlhttp.send();
-    }
-}
-</script>
+<script src="/view/frontend/register/register_js.js"></script>

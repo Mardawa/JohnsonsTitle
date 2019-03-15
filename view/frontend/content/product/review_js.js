@@ -35,7 +35,7 @@ $(document).ready(function () {
 		if (status) {
 			var toEditStar = "#rStar" + $(this).val(); // Review Star 
 			var numberStar = 0;
-			$.post("/view/frontend/content/product/getReviewById.php", {
+			$.post("/view/backend/ajax-request/review/getReviewById.php", {
 				id: $(this).val()
 			}, function (data) {
 				numberStar = data;
@@ -95,7 +95,7 @@ $(document).ready(function () {
 		var toEditTitle = "#rTitle" + $(this).val();
 		var toEditStar = "#rStar" + reviewID;
 		$(toEditStar).html(generateStar(nbStar));
-		$.post("/view/frontend/content/product/edit_review_ajax.php", {
+		$.post("/view/backend/ajax-request/review/edit_review_ajax.php", {
 			id: $(this).val(),
 			newText: $(toEditText).text(),
 			newTitle: $(toEditTitle).text(),

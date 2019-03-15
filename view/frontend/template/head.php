@@ -39,7 +39,7 @@
       rel="stylesheet">
 
 	<!-- My own CSS -->
-	<link rel="stylesheet" href="Style2.css">
+	<link rel="stylesheet" href="/public/css/Style.css">
 
 
 	<title> Johnson's Title</title>

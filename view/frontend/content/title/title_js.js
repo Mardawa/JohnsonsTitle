@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   $("button.deleteTitle").click(function () {
-    $.post("/view/frontend/content/title/delete_title_ajax.php",
+    $.post("/view/backend/ajax-request/title/delete_title_ajax.php",
       {
         id: $(this).val()
       },
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
   $("button.confirmTitle").click(function () {
     var toEdit = "#title" + $(this).val();
-    $.post("/view/frontend/content/title/edit_title_ajax.php",
+    $.post("/view/backend/ajax-request/title/edit_title_ajax.php",
       {
         id: $(this).val(),
         newTitle: $(toEdit).text(),

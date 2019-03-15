@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $("button.addCart").click(function () {
         // $(this).val() => productId
-        $.post("/view/frontend/content/myCart/addToCart_ajax.php", {
+        $.post("/view/backend/ajax-request/cart/addToCart_ajax.php", {
             productId: $(this).val()
         }
             , function (data, status) {
@@ -12,7 +12,7 @@ $(document).ready(function () {
     });
 
     $("button.removeFromCart").click(function () {
-        $.post("view/frontend/content/myCart/removeFromCart_ajax.php", {
+        $.post("/view/backend/ajax-request/cart/removeFromCart_ajax.php", {
             id: $(this).val()
         }
         , function (data, status){

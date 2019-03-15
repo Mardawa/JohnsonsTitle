@@ -3,9 +3,9 @@
 function main()
 {
 	ob_start();
-	require("./view/frontend/content/main_content.php");
+	require("./view/frontend/content/homepage/main_content.php");
 	$content = ob_get_clean();
-	require("./view/frontend/template.php");
+	require("./view/frontend/template/template.php");
 }
 
 function register()
