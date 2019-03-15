@@ -4,7 +4,7 @@
             &times;
         </button>
 
-        <strong> Info : </strong> Updating star review temp
+        <strong> Info : </strong> Adding shopping cart in progress ...
     </div>
 
     <div class="row">

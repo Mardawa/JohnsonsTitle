@@ -7,11 +7,11 @@
         <input type="text" class="form-control" id="reviewTitle" name="reviewTitle"
             placeholder="Enter the title of your review" required>
 
-        <label for="userID"> userID : à masquer </label>
-        <input type="text" class="form-control" name="userID" id="userID" value="<?= $_SESSION['id'] ?>">
-
-        <label for="productID"> productID : à masquer </label>
-        <input type="text" class="form-control" name="productID" id="productID" value="<?= $_GET['productKey'] ?>">
+        <!-- <label for="userID"> userID : à masquer </label> -->
+        <input type="hidden" class="form-control" name="userID" id="userID" value="<?= $_SESSION['id'] ?>">
+        
+        <!-- <label for="productID"> productID : à masquer </label> -->
+        <input type="hidden" class="form-control" name="productID" id="productID" value="<?= $_GET['productKey'] ?>">
 
         Rating :
         <div class="rating"></div>

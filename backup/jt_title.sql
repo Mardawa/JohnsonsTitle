@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2019 at 12:07 AM
+-- Generation Time: Mar 14, 2019 at 10:50 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -77,9 +77,9 @@ CREATE TABLE `product_review` (
 INSERT INTO `product_review` (`id`, `fkUsersId`, `fkProductsId`, `title`, `review`, `star`, `date`) VALUES
 (1, 1, 1, 'BEST SHIRT EVER ! ', 'Yes it\'s really the best shirt I\'ve ever touch ! Indeed.', 5, '2019-03-08 00:00:00'),
 (2, 2, 1, 'newTitle', 'newText', 5, '2019-03-09 14:44:46'),
-(9, 1, 1, 'Good Quality Shirt', 'some text to fill the space', 0, '2019-03-11 14:24:43'),
-(10, 1, 1, 'Testing', 'Some text ! safas', 4, '2019-03-12 17:41:02'),
-(11, 1, 1, 'Title 2 ', 'Get some sleep !', 5, '2019-03-13 23:38:21');
+(9, 1, 1, 'Good Quality Shirt', 'some text to fill the space', 3, '2019-03-11 14:24:43'),
+(10, 1, 1, 'Testing Title ', 'Some text ! to fill all this lonely space and to say that this is the best product ever almost 4/5', 4, '2019-03-12 17:41:02'),
+(11, 1, 1, 'Bad Product ', 'Only deserve 1 lonely star :(', 1, '2019-03-13 23:38:21');
 
 -- --------------------------------------------------------
 

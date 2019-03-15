@@ -29,9 +29,10 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="index.php?action=myProfile"> My profile </a>
                     <a class="dropdown-item" href="#"> Forum </a>
-                    <a class="dropdown-item" href="#"> Orders</a>
+                    <a class="dropdown-item" href="index.php?action=myCart"> My cart </a>
                   </div>
                 </li>
+                 <!-- End of dropdown -->
  
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action=logout"> Logout </a>

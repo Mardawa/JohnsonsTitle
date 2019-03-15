@@ -2,7 +2,7 @@
 
 function main()
 {
-	ob_start(); 
+	ob_start();
 	require("./view/frontend/content/main_content.php");
 	$content = ob_get_clean();
 	require("./view/frontend/template.php");
@@ -10,7 +10,7 @@ function main()
 
 function register()
 {
-    require('./controller/register.php');
+	require('./controller/register.php');
 }
 
 function login()
@@ -24,15 +24,15 @@ function logout()
 	$_SESSION = array();
 	session_destroy();
 
-	setcookie("username", "", time()-3600);
-	setcookie("pswd", "", time()-3600);
+	setcookie("username", "", time() - 3600);
+	setcookie("pswd", "", time() - 3600);
 
 	header("Location: index.php?action=main");
 }
 
 function myProfile()
 {
-	require("./controller/myProfile.php");	
+	require("./controller/myProfile.php");
 }
 
 function clothing()
@@ -43,4 +43,9 @@ function clothing()
 function title()
 {
 	require('./controller/title.php');
+}
+
+function myCart()
+{
+	require('./controller/myCart.php');
 }
