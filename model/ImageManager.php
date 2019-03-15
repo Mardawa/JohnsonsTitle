@@ -20,7 +20,7 @@ class ImageManager
 		echo $_FILES[$name]['error'];
 	}
 
-	public function upload($index,$destination,$extensions=FALSE)
+	public function upload($index,$destination,$extensions)
 	{
 	     if (!isset($_FILES[$index]) OR $_FILES[$index]['error'] > 0) return FALSE;
 	     $ext = substr(strrchr($_FILES[$index]['name'],'.'),1);
