@@ -1,6 +1,6 @@
 # JohnsonsTitle
 
-Web project using : 
+Learning web dev. basic by making a Web project using : 
 
 Front end : 
 - Html
