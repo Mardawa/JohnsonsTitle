@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 15, 2019 at 08:34 PM
+-- Generation Time: Mar 18, 2019 at 11:07 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -23,6 +23,40 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `jt_title` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `jt_title`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `fkUsersId` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_status`
+--
+
+DROP TABLE IF EXISTS `orders_status`;
+CREATE TABLE `orders_status` (
+  `id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders_status`
+--
+
+INSERT INTO `orders_status` (`id`, `status`) VALUES
+(1, 'Processing'),
+(2, 'Confirmed');
 
 -- --------------------------------------------------------
 
@@ -122,7 +156,8 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`id`, `fkUsersId`, `fkProductsId`, `quantity`) VALUES
-(14, 1, 7, 1);
+(15, 1, 2, 3),
+(16, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -179,6 +214,20 @@ INSERT INTO `users` (`id`, `pseudo`, `pswd`, `email`, `date_inscription`) VALUES
 --
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders-users` (`fkUsersId`),
+  ADD KEY `orders-status` (`status`);
+
+--
+-- Indexes for table `orders_status`
+--
+ALTER TABLE `orders_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -224,6 +273,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders_status`
+--
+ALTER TABLE `orders_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -245,7 +306,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `titles`
@@ -262,6 +323,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders-status` FOREIGN KEY (`status`) REFERENCES `orders_status` (`id`),
+  ADD CONSTRAINT `orders-users` FOREIGN KEY (`fkUsersId`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `products`
