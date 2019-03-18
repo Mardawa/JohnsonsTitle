@@ -51,6 +51,9 @@ if ($req->rowCount() > 0) {
     </tbody>
 </table>
 
+<br>
+<!-- button to remove all item from the cart -->
+
 
 
 <?php
