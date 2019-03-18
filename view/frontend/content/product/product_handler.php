@@ -39,7 +39,7 @@ $s1 = round($avgStar * 2) / 2;
         Price : <?= $data["price"]; ?>$
         <br>
 
-        <button value=<?= $data["id"] ?> class="btn addCart" and style="background-color:transparent">
+        <button value=<?= $data["id"] ?> class="btn btn-outline-secondary addCart" style="">
             <i class="material-icons">add_shopping_cart</i>
         </button>
 

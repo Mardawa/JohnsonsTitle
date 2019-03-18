@@ -1,4 +1,4 @@
-/* Centered text */
+/* Centered text in a image */
 .centered-text-image {
   position: absolute;
   top: 50%;
@@ -6,8 +6,14 @@
   transform: translate(-50%, -50%);
 }
 
+/* Background image for the banner */
 .bg-jt-image{
     background-image: url("/img/bg-jt.png");
     background-size: cover;
     background-repeat: repeat-x;
+}
+
+/* Button hover effect : addCart */
+button.addCart:hover::after{
+  content: 'Add to cart';
 }

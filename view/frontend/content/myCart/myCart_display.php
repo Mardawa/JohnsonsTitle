@@ -12,3 +12,11 @@
 </div>
 
 <script src="/view/frontend/content/product/cart_js.js"></script>
+
+<!-- Tooltip -->
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script> 
+<!-- end of tooltip -->

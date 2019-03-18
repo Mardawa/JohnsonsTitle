@@ -34,7 +34,7 @@ if ($req->rowCount() > 0) {
             <td><?= $data['Totalprice'] ?></td>
             <td>
                 <button value=<?= $data['cartId'] ?> class="btn removeFromCart" style="background-color:transparent">
-                    <i class="material-icons">remove_shopping_cart</i>
+                    <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="Delete this item">remove_shopping_cart</i>
                 </button>
             </td>
         </tr>
