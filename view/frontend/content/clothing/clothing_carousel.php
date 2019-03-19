@@ -11,7 +11,7 @@
   	<div class="carousel-inner">
 
     	<div class="carousel-item active">
-    		<img class="img-fluid mx-auto d-block rounded" src="http://placehold.it/900x300" alt="img1" width="900" height="300">
+    		<img class="img-fluid mx-auto d-block rounded" src="http://placekitten.com/g/900/300" alt="img1" width="900" height="300">
       		<div class="carousel-caption">
 				<h3> Lorem ipsum </h3>
 				<p> dolor sit amet, consectetur adipiscing elit </p>
@@ -19,7 +19,7 @@
     	</div>
 
     	<div class="carousel-item">
-	      	<img class="img-fluid mx-auto d-block rounded" src="http://placehold.it/900x300" alt="img2" width="900" height="300">
+	      	<img class="img-fluid mx-auto d-block rounded" src="http://placekitten.com/g/901/300" alt="img2" width="900" height="300">
 	      	<div class="carousel-caption">
 				<h3> Lorem ipsum </h3>
 				<p> dolor sit amet, consectetur adipiscing elit </p>
@@ -27,7 +27,7 @@
     	</div>
 
     	<div class="carousel-item">
-      		<img class="img-fluid mx-auto d-block rounded" src="http://placehold.it/900x300" alt="img3" width="900" height="300">
+      		<img class="img-fluid mx-auto d-block rounded" src="http://placekitten.com/g/900/301" alt="img3" width="900" height="300">
       		<div class="carousel-caption">
 				<h3> Lorem ipsum </h3>
 				<p> dolor sit amet, consectetur adipiscing elit </p>

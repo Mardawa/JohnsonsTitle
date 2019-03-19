@@ -64,7 +64,7 @@ while ($data = $req->fetch()) {
   <div class="col-md-3">
 
   	<div class="card" style="width:200px; height:450px">
-    		<img class="card-img-top" src="http://placehold.it/200x300" width="200" height="300">
+    		<img class="card-img-top" src="http://placekitten.com/g/200/300" width="200" height="300">
     		<div class="card-body">
      			<h4 class="card-title text-center">
      				<?php echo "{$data["name"]}"; ?>

@@ -23,7 +23,7 @@ $s1 = round($avgStar * 2) / 2;
 <div class="row">
 
     <div class="col-md-3">
-        <img class="mx-auto d-block img-fluid" src="http://placehold.it/250x300">
+        <img class="mx-auto d-block img-fluid" src="http://placekitten.com/g/250/300">
     </div>
 
     <div class="col-md-9">
